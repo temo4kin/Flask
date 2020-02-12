@@ -185,9 +185,7 @@ tours = {
 
 }
 
-
-if __name__ == '__main__':
-    app.run()
+app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -204,5 +202,6 @@ def tour():
     tour_page = render_template("tour.html")
     return tour_page
 
-app.run()    
+if __name__ == '__main__':
+    app.run()
 
