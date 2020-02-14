@@ -7,11 +7,13 @@ app = Flask(__name__)
 
 tours_number = []
 
-for i in range(6):
+while len(tours_number) != 6:
     a = random.randint(1, 16)
-    if tours_number.count(a) > 1:
+    if a in tours_number:
         a = random.randint(1, 16)
-    tours_number.append(a)
+    else:
+        tours_number.append(a)
+    print(tours_number.count(a))
 
 print (tours_number)
 
@@ -29,6 +31,10 @@ def departure():
 def tour():
     tour_page = render_template("tour.html")
     return tour_page
+
+@app.errorhandler(404)
+def not_found(e):
+    return "Ничего не нашлось! Вот неудача, отправляйтесь на главную!"
 
 if __name__ == '__main__':
     app.run()
