@@ -29,7 +29,8 @@ def departure():
 
 @app.route('/tour/<int:uid>')
 def tour(uid):
-    tour_page = render_template("tour.html", departures=data.departures, tours=data.tours, tours_number=tours_number, uid=uid)
+    depar = data.departures[data.tours[uid]['departure']]
+    tour_page = render_template("tour.html", departures=data.departures, tours=data.tours, tours_number=[1], uid=uid, depar=depar)
     return tour_page
 
 @app.errorhandler(404)
