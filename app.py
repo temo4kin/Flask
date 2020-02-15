@@ -53,9 +53,11 @@ def tour(uid):
     tour_page = render_template("tour.html", departures=data.departures, tours=data.tours, tours_number=[1], uid=uid, depar=depar)
     return tour_page
 
+
 @app.errorhandler(404)
 def not_found(e):
-    return "Ничего не нашлось! Вот неудача, отправляйтесь на главную!"
+    not_found_page = render_template("404.html", title=data.title, subtitle=data.subtitle, description='Страница не найдена!')
+    return not_found_page
 
 if __name__ == '__main__':
     app.run()
