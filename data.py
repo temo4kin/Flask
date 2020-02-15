@@ -106,7 +106,7 @@ tours = {
     10: {
         "title": "Rose Sanctum Hotel",
         "description": "Снаружи этот дом выглядит старым, но чудесным. Он был построен из желтого соснового дерева и украшен белым кирпичом. Короткие, широкие окна пропускают много света и были добавлены в дом очень симметричным способом.",
-        "departure": "msk",
+        "departure": "nsk",
         "picture": "https://github.com/temo4kin/Flask/blob/master/images/photo-10.jpg?raw=true",
         "price": 52000,
         "stars": "4",
@@ -117,7 +117,7 @@ tours = {
     11: {
         "title": "Viridian Obelisk Hotel & Spa",
         "description": "В доме очень хороший двор с большими камнями, похожими на озеро. В задней части дома окна просторные, с большими окнами, они светлее, чтобы улучшить впечатление. Снаружи есть пять маленьких деревьев. Двор в очень хорошем состоянии и очень живописный. Есть пруд для развлечения",
-        "departure": "spb",
+        "departure": "nsk",
         "picture": "https://github.com/temo4kin/Flask/blob/master/images/photo-11.jpg?raw=true",
         "price": 68000,
         "stars": "5",
