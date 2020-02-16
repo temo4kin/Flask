@@ -35,7 +35,6 @@ def departure(uin):
             dep_values.append(tours[tour])
             tour_dep_keys.append(i)
             i += 1
-            print(tours[tour]['departure'])
     for k in range(len(dep_values)):
         dep_price.append(dep_values[k].get('price'))
 

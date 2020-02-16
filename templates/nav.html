@@ -8,8 +8,8 @@
         <ul class="navbar-nav">
           {% for key, value in departures.items() %}
           <li class="nav-item active">
-            {% if request.path == '/departure/'+key %}{% set class_active = ' class="active"' %} {% else %} {% set class_active="" %} {% endif %}
-            <a class="nav-link{{ class_active }}" href="/departure/{{ key }}">{{ value }}</a>
+            {% if request.path == key %}{% set ca = ' class="active"' %} {% else %} {% set ca="" %} {% endif %}
+            <a class="nav-link{{ ca }}" href="/departure/{{ key }}">{{ value }}</a>
           </li>
           {% endfor %}
         </ul>
