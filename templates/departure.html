@@ -4,13 +4,13 @@
 
   <main class="container mt-3">
     <h1 class="display-5 mt-4">Летим {{ departures[uin] }}</h1>
-    <p class="mb-4">Найдено {{ sum_tour_dep }} тур{% if number_sum_tour_dep == 1 %}''{% elif number_sum_tour_dep <= 4 %}а{% elif number_sum_tour_dep >= 5 %}ов{% endif %}, от {{ tour_dep_price|min }} до {{ tour_dep_price|max }} рублей и от {{ tour_dep_nights|min }} до {{ tour_dep_nights|max }} ночей</p>
+    <p class="mb-4">Найдено {{ sum_dep }} тур{% if sum_tour == 1 %}''{% elif sum_tour <= 4 %}а{% elif sum_tour >= 5 %}ов{% endif %}, от {{ dep_price|min }} до {{ dep_price|max }} рублей и от {{ dep_nights|min }} до {{ dep_nights|max }} ночей</p>
     <!-- CARDS -->
     <div class="row mt-5">
-      {% for depar in tour_dep_values %}
+      {% for depar in dep_values %}
       <div class="col-4">
         <div class="card mb-4">
-          <img src={{ depar.picture }} class="card-img-top img-fluid" alt="">
+          <img src= {{ depar.picture }} class="card-img-top img-fluid" alt="">
           <div class="card-body">
             <h2 class="h5 card-title">{{ depar.title }}</h2>
             <p class="card-text">{{ depar.description|truncate(100) }}</p>

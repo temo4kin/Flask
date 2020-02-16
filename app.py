@@ -1,6 +1,6 @@
-import data
 import random
 from flask import Flask, render_template
+from data import *
 
 app = Flask(__name__)
 
@@ -19,45 +19,44 @@ while len(tours_number) != 6:
 
 @app.route('/')
 def index():
-    index_page = render_template("index.html", title=data.title, subtitle=data.subtitle, description=data.description, departures=data.departures, tours=data.tours, tours_number=tours_number)
+    index_page = render_template("index.html", title=title, subtitle=subtitle, description=description, departures=departures, tours=tours, tours_number=tours_number)
     return index_page
 
 @app.route('/departure/<uin>')
 def departure(uin):
     tour_dep_keys = []
-    tour_dep_values = []
-    tour_dep_nights = []
-    tour_dep_price = []
+    dep_values = []
+    dep_nights = []
+    dep_price = []
     i = 1
-    for tour in data.tours:
-        if data.tours[tour]['departure'] == uin:
-            tour_dep_values.append(data.tours[tour])
+    for tour in tours:
+        if tours[tour]['departure'] == uin:
+            dep_values.append(tours[tour])
             tour_dep_keys.append(i)
             i += 1
-    for k in range(len(tour_dep_values)):
-        tour_dep_price.append(tour_dep_values[k].get('price'))
+    for k in range(len(dep_values)):
+        dep_price.append(dep_values[k].get('price'))
 
-    for k in range(len(tour_dep_values)):
-        tour_dep_nights.append(tour_dep_values[k].get('nights'))
+    for k in range(len(dep_values)):
+        dep_nights.append(dep_values[k].get('nights'))
 
-    sum_tour_dep = len(tour_dep_values)
-    number_sum_tour_dep = int(str(sum_tour_dep)[-1])
-    print(number_sum_tour_dep)
-    # tour_departure = dict(zip(tour_dep_keys, tour_dep_values))
-    departure_page = render_template("departure.html", tour_dep_values=tour_dep_values, sum_tour_dep=sum_tour_dep, departures=data.departures, uin=uin, number_sum_tour_dep=number_sum_tour_dep, tour_dep_nights=tour_dep_nights, tour_dep_price=tour_dep_price)
+    sum_dep = len(dep_values)
+    sum_tour = int(str(sum_dep)[-1])
+
+    departure_page = render_template("departure.html", dep_values=dep_values, sum_dep=sum_dep, uin=uin, sum_tour=sum_tour, dep_nights=dep_nights, dep_price=dep_price, departures=departures)
     return departure_page
+
 
 @app.route('/tour/<int:uid>')
 def tour(uid):
-    depar = data.departures[data.tours[uid]['departure']]
-    tour_page = render_template("tour.html", departures=data.departures, tours=data.tours, tours_number=[1], uid=uid, depar=depar)
+    depar = departures[tours[uid]['departure']]
+    tour_page = render_template("tour.html", departures=departures, tours=tours, tours_number=[1], uid=uid, depar=depar)
     return tour_page
 
 
 @app.errorhandler(404)
 def not_found(e):
-    not_found_page = render_template("404.html", title=data.title, subtitle=data.subtitle, description='Страница не найдена!')
-    return not_found_page
+    return "Ничего не нашлось! Вот неудача, отправляйтесь на главную!"
 
 if __name__ == '__main__':
     app.run()
