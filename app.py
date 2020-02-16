@@ -1,5 +1,5 @@
 import random
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 from data import *
 
 app = Flask(__name__)
@@ -29,11 +29,13 @@ def departure(uin):
     dep_nights = []
     dep_price = []
     i = 1
+
     for tour in tours:
         if tours[tour]['departure'] == uin:
             dep_values.append(tours[tour])
             tour_dep_keys.append(i)
             i += 1
+            print(tours[tour]['departure'])
     for k in range(len(dep_values)):
         dep_price.append(dep_values[k].get('price'))
 
@@ -49,14 +51,18 @@ def departure(uin):
 
 @app.route('/tour/<int:uid>')
 def tour(uid):
-    depar = departures[tours[uid]['departure']]
+    try:
+        depar = departures[tours[uid]['departure']]
+    except KeyError as err:
+        abort(404)
     tour_page = render_template("tour.html", departures=departures, tours=tours, tours_number=[1], uid=uid, depar=depar)
     return tour_page
 
 
 @app.errorhandler(404)
 def not_found(e):
-    return "Ничего не нашлось! Вот неудача, отправляйтесь на главную!"
+    output = render_template("404.html", title=title, subtitle=subtitle, departures=departures, description='Страница не найдена! Вернитесь на главную.')
+    return output
 
 if __name__ == '__main__':
     app.run()
