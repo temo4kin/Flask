@@ -10,10 +10,10 @@
       {% for depar in dep_values %}
       <div class="col-4">
         <div class="card mb-4">
-          <img src= {{ depar.picture }} class="card-img-top img-fluid" alt="">
+          <img src= {{ depar.thumb }} class="card-img-top img-fluid" alt="">
           <div class="card-body">
             <h2 class="h5 card-title">{{ depar.title }}</h2>
-            <p class="card-text">{{ depar.description|truncate(100) }}</p>
+            <p class="card-text">{{ depar.description|truncate(90) }}</p>
             <a href="#" class="btn btn-sm btn-primary">Подробнее</a>
           </div>
         </div>
